@@ -1,0 +1,38 @@
+# Docker Compose configuration for the Next.js project with PostgreSQL
+
+# Define the services
+# each service represents a container
+services:
+  # The PostgreSQL container configuration
+  postgres:
+    image: postgres
+    # environment variables to configure PostgreSQL
+    environment:
+      POSTGRES_PASSWORD: mysecretpassword
+      POSTGRES_DB: nextjs-db
+      POSTGRES_USER: myuser
+      # additional environment variables can be added here
+      # ...
+    # expose the PostgreSQL port to the host machine
+    ports:
+      - "127.0.0.1:5432:5432"
+    # link this container data to the volume
+    # how we configure this container to use the volume
+    # docker run -v nextjs-postgres-data: ...
+    volumes:
+      # - nextjs-postgres-data:/var/lib/postgresql/data
+      - nextjs-postgres-data:/var/lib/postgresql
+
+  # The Adminer container configuration
+  # Adminer is a web-based database management tool for PostgreSQL
+  # adminer:
+  #   image: adminer
+  #   restart: always
+  #   ports:
+  #     - "127.0.0.1:8888:8080"
+
+# ask docker to create the volume for persistent storage
+# docker will create the volume for persistent storage if it doesn't exist
+# => docker volume create nextjs-postgres-data
+volumes:
+  nextjs-postgres-data:
