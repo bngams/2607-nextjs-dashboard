@@ -9,7 +9,18 @@ import {
 } from './definitions';
 import { formatCurrency } from './utils';
 
-const sql = postgres(process.env.POSTGRES_URL!, { ssl: 'require' });
+// Configuration for connecting to the Cloud PostgreSQL database
+// const sql = postgres(process.env.POSTGRES_URL!, { ssl: 'require' });
+// Configuration for connecting to the local PostgreSQL database
+const sql = postgres(process.env.POSTGRES_URL!, { 
+  ssl: false, 
+  host: process.env.POSTGRES_HOST, 
+  user: process.env.POSTGRES_USER, 
+  password: process.env.POSTGRES_PASSWORD, 
+  database: process.env.POSTGRES_DATABASE 
+});
+
+export default sql;
 
 export async function fetchRevenue() {
   try {

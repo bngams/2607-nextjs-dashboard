@@ -1,12 +1,20 @@
 import bcrypt from 'bcrypt';
 import postgres from 'postgres';
 import { invoices, customers, revenue, users } from '../../lib/placeholder-data';
+import sql from '../../lib/data';
 
 // https://github.com/porsager/postgres#connection
-const sql = postgres(process.env.POSTGRES_URL!, { ssl: 'require' });
+// const sql = postgres(process.env.POSTGRES_URL!, { ssl: 'require' });
+// SI DB LOCALE, REMPLACER PAR LA CONFIGURATION LOCALE
+// const sql = postgres(process.env.POSTGRES_URL!, { 
+//   ssl: false, 
+//   user: process.env.POSTGRES_USER,
+//   password: process.env.POSTGRES_PASSWORD, 
+//   database: process.env.POSTGRES_DATABASE 
+// });
 
 async function seedUsers() {
-  await sql`CREATE EXTENSION IF NOT EXISTS "uuid-ossp"`;
+  // await sql`CREATE EXTENSION IF NOT EXISTS "uuid-ossp"`;
   await sql`
     CREATE TABLE IF NOT EXISTS users (
       id UUID DEFAULT uuid_generate_v4() PRIMARY KEY,
