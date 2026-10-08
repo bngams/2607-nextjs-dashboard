@@ -39,7 +39,7 @@ export default async function Page(props: {
           <p className="mb-2 text-sm font-medium text-gray-700">
             Form submit{' '}
             <span className="font-normal text-gray-500">
-              (next/form, GET, sans JS d'app)
+              (next/form, GET, sans JS d&apos;app)
             </span>
           </p>
           <SearchFormSubmit
